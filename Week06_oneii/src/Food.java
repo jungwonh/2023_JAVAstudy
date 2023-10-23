@@ -1,3 +1,5 @@
+import java.awt.Window.Type;
+
 public class Food {
 	String name;
 	boolean Vege;
