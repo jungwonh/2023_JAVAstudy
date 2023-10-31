@@ -6,14 +6,14 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class UserInform {
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException{//main매서드는 IOException을 처리하도록 선언되어있다.
 		int num2;
 		String search;
 		String num, name, tel, email;
 		Scanner scan=null;
-		PrintWriter in=new PrintWriter(new FileWriter("user.txt"));
+		PrintWriter in=new PrintWriter(new FileWriter("user.txt"));//FileWriter는 문자를 쓰기 위한 스트림을 연다
 		Scanner s=new Scanner(System.in);
-		while(true) {
+		while(true) {//사용자가 여러병의 정보를 입력할 수 있도록 무한루프while(true)로 구성된다
 			System.out.println("사용자 번호를 입력하세요:");
 			num=s.next();
 			System.out.println("사용자 이름을 입력하세요 ");
