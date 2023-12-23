@@ -57,25 +57,21 @@ public class WhackAMoleGame {
     private void stopGame() {
         timer.stop();
 
-        // 게임 종료 후 다시하기, 그만하기 버튼이 있는 새로운 프레임 생성
         JFrame resultFrame = new JFrame("게임 결과");
         resultFrame.setLayout(new BorderLayout());
 
         JLabel resultLabel = new JLabel("게임 종료!\n최종 점수: " + score, SwingConstants.CENTER);
         resultFrame.add(resultLabel, BorderLayout.CENTER);
 
-        // 다시하기 버튼
         JButton playAgainButton = new JButton("다시하기");
         playAgainButton.addActionListener(e -> {
             resultFrame.dispose();
             resetGame();
         });
 
-        // 그만하기 버튼
         JButton quitButton = new JButton("그만하기");
         quitButton.addActionListener(e -> System.exit(0));
 
-        // 버튼을 담을 패널
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(playAgainButton);
         buttonPanel.add(quitButton);
@@ -88,19 +84,15 @@ public class WhackAMoleGame {
     }
 
     private void resetGame() {
-        // 게임 재시작을 위해 초기화
         score = 0;
         updateScoreLabel();
 
-        // 타이머를 재시작하기 전에 이전 타이머를 중지
         timer.stop();
 
-        // 남은 시간과 게임 중인 상태를 초기화
         TimerListener timerListener = (TimerListener) timer.getActionListeners()[0];
         timerListener.remainingTime = GAME_DURATION;
         timerListener.gameRunning = true;
 
-        // 타이머를 재시작
         timer.start();
         placeMole();
     }
@@ -110,13 +102,11 @@ public class WhackAMoleGame {
     }
 
     private void placeMole() {
-        // 현재 두더지 위치를 비활성화
         if (currentMoleRow >= 0 && currentMoleRow < GRID_SIZE
                 && currentMoleCol >= 0 && currentMoleCol < GRID_SIZE) {
             buttons[currentMoleRow][currentMoleCol].setBackground(Color.LIGHT_GRAY);
         }
 
-        // 랜덤한 위치에 두더지 생성
         currentMoleRow = (int) (Math.random() * GRID_SIZE);
         currentMoleCol = (int) (Math.random() * GRID_SIZE);
         buttons[currentMoleRow][currentMoleCol].setBackground(Color.RED);
@@ -129,7 +119,7 @@ public class WhackAMoleGame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (!gameRunning) {
-                return; // 게임 중이 아니라면 처리하지 않음
+                return; 
             }
 
             if (remainingTime <= 0) {
